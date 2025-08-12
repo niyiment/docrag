@@ -12,6 +12,8 @@ import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.io.RandomAccessReadBufferedFile;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -24,9 +26,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+
 @Service
 public class DocumentService {
-
+    Logger log = LoggerFactory.getLogger(DocumentService.class);
     private final Path storagePath;
     private final DocumentRepository documentRepository;
     private final ChunkRepository chunkRepository;
@@ -69,6 +72,7 @@ public class DocumentService {
         String text = extractTextFromPdf(destination.toFile());
         List<String> chunks = ChunkUtils.chunkText(text, chunkSize, chunkSize / 2, true, true);
 
+        log.info("Chunks: {}", chunks.getFirst());
         for(String chunk : chunks) {
             float[] embedding = embeddingModel.embed(chunk);
             String json = objectMapper.writeValueAsString(embedding);

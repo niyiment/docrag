@@ -24,8 +24,6 @@ spring:
         model: gpt-4
       embedding:
         model: text-embedding-3-small
-        options:
-          dimensions: 1536
 
 server:
   port: 8080

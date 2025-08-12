@@ -56,11 +56,8 @@ public final class ChunkUtils  {
 
             String chunk = text.substring(start, end).trim();
             if (!chunk.isEmpty()) {
-                if (withMetadata) {
-                    chunks.add((T) new TextChunk(chunkIndex++, chunk, start, end));
-                } else {
+
                     chunks.add((T) chunk);
-                }
             }
             start = Math.max(start + chunkSize - overlap, end);
         }
