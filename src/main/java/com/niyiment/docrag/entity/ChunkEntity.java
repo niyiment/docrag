@@ -34,6 +34,12 @@ public class ChunkEntity {
         this.embeddingJson = embeddingJson;
     }
 
+    public ChunkEntity(DocumentEntity document, String content, String embeddingJson) {
+        this.document = document;
+        this.content = content;
+        this.embeddingJson = embeddingJson;
+    }
+
     public Integer getId() {
         return id;
     }
