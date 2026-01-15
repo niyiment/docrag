@@ -37,3 +37,6 @@ curl -X POST "https://localhost:8080/api/documents/query" \
 -d '{"question": "What is this document about?"}'
 ```
 
+## Swagger Screenshot
+
+![img.png](swagger-screenshot.png)

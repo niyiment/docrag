@@ -29,7 +29,7 @@ public class DocumentController {
         this.qaService = qaService;
     }
 
-    @RequestMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> upload(@RequestPart("file") MultipartFile file) {
         try {
             DocumentEntity document = documentService.storedPdf(file);
